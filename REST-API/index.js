@@ -1,9 +1,16 @@
 const app = require("./app.js")
-const products = require("./product.json")
+const { getAllProducts, createProduct, getProduct, updateProductEverything, updateProduct, deleteProduct } = require("./controllers/productController.js")
+
 const PORT = 3000
 
-app.get("/products", (req,res) => {
-    res.json(products)
-})
+app.route("/products")
+    .get(getAllProducts)
+    .post(createProduct)
+
+app.route("/product/:id")
+    .get(getProduct)
+    .put(updateProductEverything)
+    .patch(updateProduct)
+    .delete(deleteProduct)
 
 app.listen(PORT, () => console.log(`Server started at http://localhost:${PORT}`))

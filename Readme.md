@@ -1,1 +1,3 @@
-This is a repo for all the basic backend things ✅
+- `Restful API`: It is a representational state/standard way of defining API by using appropiate and proper methods `GET,POST,PUT,PATCH,DELETE` and also sending correct status codes.
+
+- `MVC Model`: It is known as Model View Controller. `Model` means the data and the type of data we will be dealing with, `View` means showing the data in the UI, `Controllers` are function/methods that helps to write logics to show the data in UI properly 
