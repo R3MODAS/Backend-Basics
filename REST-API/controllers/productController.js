@@ -1,4 +1,6 @@
-const products = require("../product.json")
+const fs = require("fs")
+const data = JSON.parse(fs.readFileSync("./data.json", "utf-8"))
+const products = data.products;
 
 const getAllProducts = (req, res) => {
     res.json(products)
@@ -28,7 +30,7 @@ const createProduct = (req, res) => {
         })
     }
     products.push(newProduct)
-    res.json({
+    res.status(201).json({
         success: true,
         newProduct
     })
@@ -56,4 +58,4 @@ const deleteProduct = (req, res) => {
     res.json(deletedProduct)
 }
 
-module.exports = {getAllProducts, getProduct, createProduct, updateProduct, updateProductEverything, deleteProduct}
+module.exports = { getAllProducts, getProduct, createProduct, updateProduct, updateProductEverything, deleteProduct }
