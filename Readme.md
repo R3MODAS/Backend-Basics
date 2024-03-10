@@ -12,3 +12,34 @@ There is a `DB Server` and inside that there is `Database` and inside it there i
 
 DB Server -> Databases -> Collections -> Documents for NoSQL DB
 DB Server -> Databases -> Tables -> Tuples for SQL DB
+
+Commands for MongoDB
+--------------------
+- `show databases` for showing all the databases
+
+- `use db_name` for creating/switching to the database
+
+- `db.products.insertOne()` for inserting a single document inside the collection `products`
+
+- `db.products.find()` for finding `document/documents` inside the `collection`
+
+- `db.products.insertMany()` for inserting multiple documents inside the collection `products`
+
+- `db.products.find({title: {$eq: "Das"}})` for finding title whose value is equal to Das and `$eq` is by default applied
+
+- `db.products.find({rating: {$gt: 4.5}})` for finding rating whose value is greater than 4.5
+
+- more operators such as `$gt,$lt,$gte,$lte` are used to do such operations
+
+- `db.products.find({ $and: [{rating: {$gt: 4.5}}, {id: {$gt: 1}} ]})` says that the find the object which has rating>4.5 and id>1 as both should be satisfied and similarly we can use `$or,$and,$nor,$not`
+
+- There are `cursor methods` in mongodb such as `sort()` helps to sort out elements and `1` means ascending and `-1` means descending,
+`limit()` which helps to limit the result
+
+- `db.products.countDocuments()` counts the number of documents that matches a certain condition
+
+- `db.products.find({'price': {$gt: 600}}, {'title': 1, 'price': 1})` this means that find the object who has price greater than 600 but show only objectId (by default), title and price data inside the object and not bloat it with all data. 1 means true and 0 means false.
+
+MongoDB Atlas
+-------------
+MongoDB Atlas Database is in cloud and it is much safe version.

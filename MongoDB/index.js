@@ -1,8 +1,10 @@
 const express = require("express")
 const mongoose = require("mongoose")
 
+process.loadEnvFile()
+
 mongoose
-.connect(`mongodb+srv://remo:3y4x3RM07dAGPC70@cluster0.27adrju.mongodb.net/practice`)
+.connect(process.env.MONGODB_URL)
 .then(() => {
     console.log(`Connected to MongoDB successfully`)
 })
