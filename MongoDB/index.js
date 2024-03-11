@@ -1,63 +1,19 @@
-const express = require("express")
-const mongoose = require("mongoose")
+const app = require("./app")
+const connectDB = require("./db")
 
 process.loadEnvFile()
 
-mongoose
-.connect(process.env.MONGODB_URL)
-.then(() => {
-    console.log(`Connected to MongoDB successfully`)
-})
-.catch((err) => {
-    console.log(err)
-})
+connectDB()
+    .then(() => {
+        app.on("error", (err) => {
+            console.log(`Express err: ${err}`)
+        })
 
-const userSchema = new mongoose.Schema({
-    name: {
-        type: String,
-        required: true
-    },
-    age: {
-        type: Number,
-        required: true
-    }
-})
-
-const User = mongoose.model("User", userSchema)
-
-const addUser = async() => {
-    const createdUser = await User.create({
-        name: "Ram", age: 35
+        app.listen(process.env.PORT, () => {
+            console.log(`Server started at http://localhost:${process.env.PORT}`)
+        })
     })
-    console.log(createdUser)
-}
-
-const readUser = async() => {
-    // const user = await User.find({
-    //     name: {$eq: "Remo"}
-    // })
-
-    const user = await User.find({
-        age: {$gte: 27}
+    .catch((err) => {
+        console.log(`MongoDB connection err: `, err)
     })
-    console.log(user)
-}
 
-const updateUser = async() => {
-    const id = "65e9ff7c9b36bdb92b2995cb"
-    const updatedUser = await User.findByIdAndUpdate(id, {
-        name: "Sharadindu Das"
-    })
-    console.log(updatedUser)
-}
-
-const deleteUser = async() => {
-    const id = "65e9ff7c9b36bdb92b2995cb"
-    const deletedUser = await User.findByIdAndDelete(id)
-    console.log(deletedUser)
-}
-
-// addUser()
-// readUser()
-// updateUser()
-// deleteUser()
