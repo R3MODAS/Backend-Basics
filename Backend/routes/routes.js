@@ -5,7 +5,7 @@ const router = Router()
 // Routes
 router
     .get("/", rootRoute)
-    .get("/product", getAllProducts)
+    .get("/products", getAllProducts)
     .post("/product", createProduct)
     .get("/product/:id", getProduct)
     .put("/product/:id", updateProduct)

@@ -1,4 +1,3 @@
-const { z } = require("zod")
 const Product = require("../models/product.models")
 
 const rootRoute = (req, res) => {
@@ -6,23 +5,8 @@ const rootRoute = (req, res) => {
 }
 
 const createProduct = async (req, res) => {
-
-    const productSchema = z.object({
-        title: z.string(),
-        description: z.string(),
-        price: z.number(),
-        discountPercentage: z.number().min(0).max(100),
-        rating: z.number().min(0).max(5),
-        stock: z.number().int().min(0),
-        brand: z.string(),
-        category: z.string(),
-        thumbnail: z.string().url(),
-        images: z.array(z.string().url())
-    })
-
     try {
-        const validatedData = productSchema.parse(req.body);
-        const createdProduct = await Product.create(validatedData);
+        const createdProduct = await Product.create(req.body);
         res.json(createdProduct);
     } catch (err) {
         console.error(err.errors);
