@@ -6,6 +6,17 @@ const rootRoute = (req, res) => {
     res.send(`<h1>Hello, This is MongoDB Basics</h1>`)
 }
 
+const getAddForm = async (req, res) => {
+    try {
+        ejs.renderFile(path.resolve(__dirname,'../views/add.ejs'), function(err, str){
+            res.send(str);
+         });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+}
+
 const getAllProductsSSR = async (req, res) => {
     try {
         const products = await Product.find();
@@ -86,4 +97,4 @@ const deleteProduct = async (req, res) => {
     }
 };
 
-module.exports = { rootRoute, createProduct, getProduct, getAllProducts, updateProduct, deleteProduct, getAllProductsSSR }
+module.exports = { rootRoute, createProduct, getProduct, getAllProducts, updateProduct, deleteProduct, getAllProductsSSR, getAddForm }
