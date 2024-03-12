@@ -43,3 +43,7 @@ Commands for MongoDB
 MongoDB Atlas
 -------------
 MongoDB Atlas Database is in cloud and it is much safe version.
+
+JWT
+---
+It is json web token which is basically used as an authorization pass for user who has signed up and don't need to login again and again while they visit a website as with the help of token, they can verify themselves
