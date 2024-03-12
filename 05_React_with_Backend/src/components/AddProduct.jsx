@@ -14,7 +14,7 @@ const AddProduct = () => {
   const handleSubmit = async (e) => {
       e.preventDefault()
     try{
-      const response = await axios.post(`${BASE_URL}/product`, product)
+      const response = await axios.post(`${BASE_URL}/products`, product)
       console.log(response.data)
       navigate("/")
     }catch(err){
